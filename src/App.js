@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import HeaderComponent from './commonlayout/Headercomponent';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeComponent from './components/HomeComponent';
+import LoginComponent from './components/LoginComponent';
+import { useSelector } from 'react-redux';
+import UserDashboard from './components/UserDashboard/UserDashboard';
+import Protected from './components/UserDashboard/Protected';
 
 function App() {
+
+  const { isAuthenticated } = useSelector((state) => state.root);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <HeaderComponent isLoggedIn={isAuthenticated} />
+        <Routes>
+          <Route path='/' element={<HomeComponent />} />
+          <Route path='/login' element={<LoginComponent />} />
+          <Route
+            path="/dashboard"
+            element={<Protected isAuthenticated={isAuthenticated}><UserDashboard /></Protected>}
+          />
+        </Routes>
+      </Router>
+
     </div>
   );
 }

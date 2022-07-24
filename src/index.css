@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.container .me-auto{
+  margin-right: 0 !important;
+}
+.navbar-brand{
+  font-size: 2rem;
+    width: 100%;
+}
+.container a{
+  margin: 0 auto;
+  color: #fff;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.container a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 980px) {
+  .custombtn.w-25 {
+    width: 80% !important
+  }
+}
