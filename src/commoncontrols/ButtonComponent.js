@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {BrowserRouter as Redirect} from 'react-router-dom';
 
-export default function ButtonComponent(props) {
-    
+function ButtonComponent(props) {
+    console.log("Child function triggering")
     return (
         <>
         <Container>
-            <Row className='mt-3'>
+            <Row className={props.rowclass ? 'mt-3' : ''}>
                 <Col lg={12} md={8}>
-                    <Button variant={props.variant} size="lg" className='custombtn w-25' onClick={props.triggerClick}>
+                    <Button variant={props.variant} size="lg" className={props.btnClass ? props.btnClass : 'w-25'} onClick={props.triggerClick}>
                         {props.btnName}
                     </Button>
                 </Col>
@@ -21,3 +21,5 @@ export default function ButtonComponent(props) {
         </>
     );
 }
+
+export default memo(ButtonComponent)
