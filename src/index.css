@@ -18,7 +18,7 @@ code {
   font-size: 2rem;
     width: 100%;
 }
-.container a{
+.navbar .container a, .navbar h2{
   margin: 0 auto;
   color: #fff;
   text-decoration: none;
