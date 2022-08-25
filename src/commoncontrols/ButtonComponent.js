@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import {BrowserRouter as Redirect} from 'react-router-dom';
 
 function ButtonComponent(props) {
-    console.log("Child function triggering")
     return (
         <>
         <Container>
