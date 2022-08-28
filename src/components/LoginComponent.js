@@ -81,7 +81,7 @@ function LoginComponent() {
                             {userValidation.errormessage}
                         </div> : ''}
                     </Form.Group>
-                    <Form.Group className='mb-3' controlId="buttonID">
+                    <Form.Group className='mb-3 mw-100' controlId="buttonID">
                         <ButtonComponent variant={'primary'} btnName={'Login'} triggerClick={loginuser} rowclass={'mt-3'} />
                     </Form.Group>
                 </Form>
