@@ -7,6 +7,9 @@ import LoginComponent from './components/LoginComponent';
 import { useSelector } from 'react-redux';
 import UserDashboard from './components/UserDashboard/UserDashboard';
 import Protected from './components/UserDashboard/Protected';
+import UserProfileComponent from "./components/UserProfileComponent/UserProfileComponent";
+import FindADoctor from "./components/FindADoctor/FindADoctor";
+import MyBookingComponent from "./components/MyBooking/MyBookingComponent";
 
 function App() {
 
@@ -19,10 +22,19 @@ function App() {
         <Routes>
           <Route path='/' element={<HomeComponent />} />
           <Route path='/login' element={<LoginComponent />} />
-          <Route
+          {/* <Route
             path="/dashboard"
             element={<Protected isAuthenticated={isAuthenticated}><UserDashboard /></Protected>}
-          />
+          /> */}
+          
+
+          <Route element={<Protected isAuthenticated={isAuthenticated} />}>
+            <Route path="/dashboard" element={<UserDashboard />} />
+            <Route path="/userprofile" element={<UserProfileComponent />} />
+            <Route path="/findadoctor" element={<FindADoctor />} />
+            <Route path="/mybooking" element={<MyBookingComponent />} />
+          </Route>
+
         </Routes>
       </Router>
 

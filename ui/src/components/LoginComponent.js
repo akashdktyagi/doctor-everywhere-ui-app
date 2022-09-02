@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import { Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import ButtonComponent from '../commoncontrols/ButtonComponent';
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 function LoginComponent() {
     let navigate = useNavigate();
     const [loginid, setLoginid] = useState("");
+    const [inputdata, setInputData] = useState(false);
     const [userValidation, setUserValidation] = useState({
         errorcheck: false,
         errormessage: ""
@@ -24,6 +25,7 @@ function LoginComponent() {
                 errorcheck: false
             })
             setLoginid(e.target.value)
+            setInputData(true)
         }else{
             setLoginid("")
         }
@@ -66,6 +68,8 @@ function LoginComponent() {
         }
     }
 
+    // const memoisedfunction = useMemo(() => loginuser, []);
+
     return (
         <>
             <h3 className='my-3'>Welcome !</h3>
@@ -77,8 +81,8 @@ function LoginComponent() {
                             {userValidation.errormessage}
                         </div> : ''}
                     </Form.Group>
-                    <Form.Group className='mb-3' controlId="buttonID">
-                        <ButtonComponent variant={'primary'} btnName={'Login'} triggerClick={loginuser} />
+                    <Form.Group className='mb-3 mw-100' controlId="buttonID">
+                        <ButtonComponent variant={'primary'} btnName={'Login'} triggerClick={loginuser} rowclass={'mt-3'} />
                     </Form.Group>
                 </Form>
             </Container>
