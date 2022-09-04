@@ -9,3 +9,8 @@ Full Stack Microservices Architecture with React for front end and Spring boot f
 ---
 
 ### Back end Instructions
+* All the apis are kept in their seperate github repos:
+    * Patient API: https://github.com/akashdktyagi/patient-springboot-reference-api
+    * Doctor API: 
+    * Appointment API:
+
