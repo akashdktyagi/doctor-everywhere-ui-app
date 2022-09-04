@@ -1,0 +1,9 @@
+services:
+  ui:
+    image:
+    ports:
+      - "80:80"
+  doctors-api:
+    image: yantraqa/gotocloud-doctor-api:latest
+    ports:
+      - "9000:9000"
