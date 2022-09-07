@@ -29,6 +29,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: run npm commands
+      working-directory: ui
+      run: | 
+        npm ci
+        docker build -f Dockerfile -t public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest .
+        docker push public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest
+
+
