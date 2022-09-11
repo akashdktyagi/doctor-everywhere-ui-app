@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
   # this is required to make use of GitHub OIDC to connect to AWS ECR resource
-  permissions:
-    id-token: write # required to use OIDC authentication
-    contents: read # required to checkout the code from the repo
+    permissions:
+      id-token: write # required to use OIDC authentication
+      contents: read # required to checkout the code from the repo
 
     strategy:
       matrix:
