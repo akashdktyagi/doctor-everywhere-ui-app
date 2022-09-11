@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: CI Pipeline
 
 on:
   push:
@@ -29,11 +29,29 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
-    - name: run npm commands
+
+    - name: npm ci
       working-directory: ui
       run: | 
         npm ci
-        docker build -f Dockerfile -t public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest .
-        docker push public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest
+
+    - name: Login to Amazon ECR Public
+      id: login-ecr-public
+      uses: aws-actions/amazon-ecr-login@v1
+      with:
+        registry-type: public
+
+
+    - name: Build, tag, and push docker image to Amazon ECR Public
+      env:
+        REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+        REGISTRY_ALIAS: my-ecr-public-registry-alias
+        REPOSITORY: z3i9f6u3
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -f Dockerfile -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+#        docker build -f Dockerfile -t public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest .
+#        docker push public.ecr.aws/z3i9f6u3/doctor-everywhere-ui:latest
 
 
