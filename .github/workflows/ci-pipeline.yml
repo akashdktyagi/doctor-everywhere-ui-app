@@ -16,6 +16,11 @@ jobs:
         working-directory: 'ui'
     runs-on: ubuntu-latest
 
+  # this is required to make use of GitHub OIDC to connect to AWS ECR resource
+  permissions:
+    id-token: write # required to use OIDC authentication
+    contents: read # required to checkout the code from the repo
+
     strategy:
       matrix:
         node-version: [14.x]
@@ -35,12 +40,18 @@ jobs:
       run: | 
         npm ci
 
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::318134353397:role/ECRConnectToGitHubActionsForFullStackProject
+        role-duration-seconds: 900 # the ttl of the session, in seconds.
+        aws-region: us-east-1 # use your region here.
+
     - name: Login to Amazon ECR Public
       id: login-ecr-public
       uses: aws-actions/amazon-ecr-login@v1
       with:
         registry-type: public
-
 
     - name: Build, tag, and push docker image to Amazon ECR Public
       env:
