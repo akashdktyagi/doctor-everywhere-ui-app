@@ -36,6 +36,7 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
 
     - name: npm ci
+      working-directory: ui
       run: | 
         npm ci
 
