@@ -25,6 +25,7 @@ function App() {
           {/* <Route
             path="/dashboard"
             element={<Protected isAuthenticated={isAuthenticated}><UserDashboard /></Protected>}
+            temp
           /> */}
           
 
