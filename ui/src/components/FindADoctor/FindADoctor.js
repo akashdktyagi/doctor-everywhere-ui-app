@@ -20,22 +20,27 @@ const FindADoctor = () => {
       text: "ID",
     },
     {
-      dataField: "first_name",
-      text: "Doctor Name",
+      dataField: "name",
+      text: "Name",
       sort: true,
     },
     {
+      dataField: "age",
+      text: "age",
+    },
+    {
       dataField: "email",
-      text: "Degree",
+      text: "email",
     },
     {
-      dataField: "experiencelevel",
-      text: "Experience Level",
+      dataField: "phone",
+      text: "phone",
     },
     {
-      dataField: "experience",
-      text: "Experience (Years)",
+      dataField: "medicalConditions",
+      text: "medicalConditions",
     },
+
     {
       dataField: "status",
       text: "Status",
